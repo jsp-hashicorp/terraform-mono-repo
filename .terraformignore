@@ -1,0 +1,14 @@
+# 문서 링크
+# https://www.terraform.io/docs/backends/types/remote.html#excluding-files-from-upload-with-terraformignore
+# Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# Crash log files
+crash.log
+*.lock.hcl
+.gitignore
+*ignore
