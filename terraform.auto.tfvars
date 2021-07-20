@@ -1,3 +1,3 @@
-http_port = 8080
-service_name = "nginx-stage"
-service_tag = "stage"
+http_port = 8081
+service_name = "nginx-prod"
+service_tag = "prod"
