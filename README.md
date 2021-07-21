@@ -38,11 +38,6 @@ OSS를 사용하여 Terraform Configuration Template을 작성하게 되면 다�
 동일한 기능을 수행하는 모듈화하여, 코드 재 사용성을 높임
 ```bash
 ❯ cat main.tf
-# Configure the Nomad provider
-provider "nomad" {
-  address = "http://nomad.service.consul:4646"
-}
-
 module "nginx-nomad" {
   source = "./prod"
 
