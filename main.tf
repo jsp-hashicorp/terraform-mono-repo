@@ -4,66 +4,10 @@ provider "nomad" {
 }
 
 
-# Register a job
-resource "nomad_job" "nginx" {
-  #jobspec = "${data.template_file.job.rendered}"
-  jobspec = <<EOT
-  variable "http_port" {
-      type=string
-  }
-  variable "service_name"{
-      type=string
-  }
-  variable "stage_tag"{
-      type = string
-  }
-  job "nginx-stage" {
-  datacenters = ["dc1"]
-  type = "service"
-  group "nginx-stage" {
-    count = 1
-    task "nginx-stage" {
-      driver = "docker"
-      config {
-        image = "nginxdemos/nginx-hello"
-        ports = ["http"]
-      }
-      resources {
-        cpu    = 100 # 100 MHz
-        memory = 128 # 128 MB
-      }
-      service {
-        name = var.service_name
-        tags = [ var.stage_tag, "urlprefix-/nginx" ]
-        port = "http"
-        check {
-          type     = "tcp"
-          interval = "10s"
-          timeout  = "2s"
-        }
-      }
-    }
-   network {
-       port "http" {
-            static = var.http_port
-        }
-      }
-  }
-}
-  EOT
-  
-  hcl2 {
-    enabled = true
-    vars = {
-       "http_port" = var.http_port,
-       "service_name" = var.service_name,
-       "stage_tag" = var.service_tag,
-   }
-  }
+module "nginx-nomad" {
+  source = "./prod"
 
-}
-
-data  "nomad_job" "result" {
-    job_id = "nginx-stage"
-    depends_on = [nomad_job.nginx]
+  http_port = var.http_port
+  service_name = var.service_name
+  service_tag = var.service_tag
 }

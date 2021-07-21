@@ -34,7 +34,8 @@ OSS를 사용하여 Terraform Configuration Template을 작성하게 되면 다�
     ├── outputs.tf
     └── variables.tf
 ```
-
+3. 동일 기능을 모듈로 대체.
+동일한 기능을 수행하는 모듈화하여, 코드 재 사용성을 높임
 
 ## 2. Terraform Cloud/Enterprise를 사용하는 경우 - Remote backend 
 Terraform Configuration Template 작성 후 VCS 상의 저장소와 Workspace를 연동하는 방법은 다음과 같이 기본적으로 3가지 방안이 가능합니다.
