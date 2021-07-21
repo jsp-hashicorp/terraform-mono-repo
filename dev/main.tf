@@ -64,6 +64,6 @@ resource "nomad_job" "nginx" {
 }
 
 data  "nomad_job" "result" {
-    job_id = "nginx-stage"
+    job_id = "nginx-dev"
     depends_on = [nomad_job.nginx]
 }
