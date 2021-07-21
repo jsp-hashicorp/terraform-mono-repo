@@ -17,12 +17,12 @@ resource "nomad_job" "nginx" {
   variable "stage_tag"{
       type = string
   }
-  job "nginx-stage" {
+  job "nginx-dev" {
   datacenters = ["dc1"]
   type = "service"
-  group "nginx-stage" {
+  group "nginx-dev" {
     count = 1
-    task "nginx-stage" {
+    task "nginx-dev" {
       driver = "docker"
       config {
         image = "nginxdemos/nginx-hello"
@@ -64,6 +64,6 @@ resource "nomad_job" "nginx" {
 }
 
 data  "nomad_job" "result" {
-    job_id = "nginx-stage"
+    job_id = "nginx-dev"
     depends_on = [nomad_job.nginx]
 }
