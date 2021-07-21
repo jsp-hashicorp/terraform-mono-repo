@@ -6,7 +6,7 @@ provider "nomad" {
 
 # Register a job
 resource "nomad_job" "nginx" {
-  #jobspec = "${data.template_file.job.rendered}"
+
   jobspec = <<EOT
   variable "http_port" {
       type=string
