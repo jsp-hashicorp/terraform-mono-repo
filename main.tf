@@ -1,9 +1,3 @@
-# Configure the Nomad provider
-#provider "nomad" {
-#  address = "http://nomad.service.consul:4646"
-#}
-
-
 module "nginx-nomad" {
   source = "./prod"
 
